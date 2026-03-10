@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4Q Prac Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+            border: 1px solid #484545;
+            border-radius: 5px;
+            padding: 10px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>School Event Entry Check</h1>
+    <p id="jaehyun"> </p>
+
+    <h1>Jeepney Fare Discount</h1>
+    <p id="doyoung"> </p>
+
+    <h1>Quiz Grade Evaluator</h1>
+    <p id="jungwoo"> </p>
+
+    <h1>Data Promo Selector</h1>
+    <p id="haechan"> </p>
+
+    <h1>Vowel Counter in Your Name</h1>
+    <p id="yuta"> </p>
+
+    <h1>Username Validator</h1>
+    <p id="taeyong"> </p>
+
+    <h1>Secure Login System</h1>
+    <p id="mark"> </p>
+
+    <script>
+        let answer = prompt("Are you wearing your school ID? (yes/no)");
+        if (answer.toLowerCase() === "yes") {
+            document.getElementById("jaehyun").innerHTML = "Welcome to the event!";
+        } else if (answer.toLowerCase() === "no") {
+            document.getElementById("jaehyun").innerHTML = "";
+        } else {
+            alert("Invalid input.");
+        }
+
+        let student = prompt("Are you a student? (yes/no)");
+        let senior = prompt("Are you a senior citizen? (yes/no)");
+        if (student.toLowerCase() === "yes" || senior.toLowerCase() === "yes") {
+            document.getElementById("doyoung").innerHTML = "You get a discount.";
+        } else {
+            document.getElementById("doyoung").innerHTML = "You will pay the regular fare.";
+        }
+
+        let score = parseInt(prompt("Enter your quiz score (0-100):"));
+        if (score >= 90 && score <= 100) {
+            document.getElementById("jungwoo").innerHTML = "Excellent";
+        } else if (score >= 75 && score < 90) {
+            document.getElementById("jungwoo").innerHTML = "Good job";
+        } else if (score >= 60 && score < 75) {
+            document.getElementById("jungwoo").innerHTML = "You passed";
+        } else if (score < 0  || score > 100) {
+            document.getElementById("jungwoo").innerHTML = "Invalid score";
+        } else {
+            document.getElementById("jungwoo").innerHTML = "You need to review";
+        }
+
+        let promoCode = prompt("Enter the promo code (A/B/C):");
+        switch (promoCode.toUpperCase()) {
+            case "A":
+                document.getElementById("haechan").innerHTML = "You selected Promo A: 1GB for 1 day.";
+                break;
+            case "B":
+                document.getElementById("haechan").innerHTML = "You selected Promo B: 5GB for 7 days.";
+                break;
+            case "C":
+                document.getElementById("haechan").innerHTML = "You selected Promo C: 10GB for 30 days.";
+                break;
+            default:
+                document.getElementById("haechan").innerHTML = "Invalid choice.";
+        }
+
+        let vowel = prompt("Enter your name:");
+        let lowerName = vowel.toLowerCase();
+        let vowelCount = 0;
+        for (let i = 0; i < lowerName.length; i++) {
+            if (lowerName[i] === 'a' || lowerName[i] === 'e' || lowerName[i] === 'i' || lowerName[i] === 'o' || lowerName[i] === 'u') {
+                vowelCount++;
+            }
+        }
+        document.getElementById("yuta").innerHTML = "Your name contains " + vowelCount + " vowels.";
+
+        let userName = prompt("Enter a username:");
+        let space = false;
+        for (let i = 0; i < userName.length; i++) {
+            if (userName[i] === " ") {
+                space = true;
+            }
+        }
+        if (space) {
+            document.getElementById("taeyong").innerHTML = "Username must not contain spaces.";
+        } else if (userName.length < 6) {
+            document.getElementById("taeyong").innerHTML = "Username must be at least 6 characters.";
+        } else {
+            document.getElementById("taeyong").innerHTML = "Valid username.";
+        }
+
+        let password = prompt("Enter your password:");
+        let attempts = 0;
+        let correctPass = "Grade9JS";
+        while (attempts < 3) {
+            if (password === correctPass) {
+                document.getElementById("mark").innerHTML = "Login successful.";
+                break;
+            } else {
+                attempts++;
+                if (attempts < 3) {
+                    password = prompt("Incorrect password. Try again (Attempt " + (attempts + 1) + " of 3):");
+                }
+            }
+        }
+        if (attempts === 3) {
+            document.getElementById("mark").innerHTML = "Account locked.";
+        }
+
+    </script>
+</body>
+</html>
